@@ -8,10 +8,10 @@ class OmniauthCallbacksController < ApplicationController
       secret: auth.credentials.secret,
     )
 
-    redirect_to root_path, notice: "Successfully connected your account"
+    redirect_to twitter_accounts_path, notice: "Successfully connected your account"
   end
 
   def auth
-      request.env['omniauth.auth']
+    request.env['omniauth.auth']
   end
 end
