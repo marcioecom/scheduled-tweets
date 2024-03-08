@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TweetJob < ApplicationJob
   queue_as :default
 

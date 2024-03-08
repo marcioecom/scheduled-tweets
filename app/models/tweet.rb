@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Tweet < ApplicationRecord
   belongs_to :user
   belongs_to :twitter_account
@@ -10,9 +12,7 @@ class Tweet < ApplicationRecord
   end
 
   after_save_commit do
-    if published_at_previously_changed?
-      TweetJob.set(wait_until: published_at).perform_later(self)
-    end
+    TweetJob.set(wait_until: published_at).perform_later(self) if published_at_previously_changed?
   end
 
   def published?
